@@ -20,6 +20,7 @@
 		2DD6166B2805878F00CB9CC3 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6166A2805878F00CB9CC3 /* PokemonModel.swift */; };
 		2DD6166D2805898B00CB9CC3 /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6166C2805898B00CB9CC3 /* PokemonViewModel.swift */; };
 		2DD6166F2805CB8300CB9CC3 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD6166E2805CB8300CB9CC3 /* PokemonCollectionViewCell.swift */; };
+		2DD616712805F6D000CB9CC3 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD616702805F6D000CB9CC3 /* UtilityExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		2DD6166A2805878F00CB9CC3 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		2DD6166C2805898B00CB9CC3 /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
 		2DD6166E2805CB8300CB9CC3 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DD616702805F6D000CB9CC3 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		2DD616632805769800CB9CC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2DD616702805F6D000CB9CC3 /* UtilityExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				2DD6166F2805CB8300CB9CC3 /* PokemonCollectionViewCell.swift in Sources */,
 				2DD6166928057FF200CB9CC3 /* WebAPI.swift in Sources */,
 				2DD616322805748D00CB9CC3 /* AppDelegate.swift in Sources */,
+				2DD616712805F6D000CB9CC3 /* UtilityExtensions.swift in Sources */,
 				2DD616342805748D00CB9CC3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,6 +28,7 @@ class PokemonViewModel: PokemonViewModelProtocol {
         WebAPI.shared.fetchPokemons(with: self.offset) { [weak self] results in
             switch results {
             case .failure(_):
+                self?.pokemons?([])
                 break
             case .success(let response):
                 self?.hasNextPage = !(response.next ?? "").isEmpty

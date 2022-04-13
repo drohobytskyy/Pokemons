@@ -113,7 +113,7 @@ extension PokemonsViewController {
         
         self.collectionView.collectionViewLayout = layout
         
-        self.collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)
+        self.collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: PokemonCollectionViewCell.self))
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self

@@ -87,7 +87,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: PokemonDetailsViewController.self)) as? PokemonDetailsViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }

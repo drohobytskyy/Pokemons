@@ -30,7 +30,7 @@ class PokemonsViewController: UIViewController {
     //MARK: - Private methods
     private func setupUI() {
         self.title = NSLocalizedString("pokemonsView.title", comment: "")
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.customAppStyle()
         
         self.viewModel = PokemonViewModel()
         self.configureSearchBar()
@@ -89,6 +89,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: PokemonDetailsViewController.self)) as? PokemonDetailsViewController {
+            vc.pokemonDetails = self.pokemons[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -151,7 +152,6 @@ extension PokemonsViewController {
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.frame = self.view.bounds
         
         self.view.addSubview(collectionView)
     }

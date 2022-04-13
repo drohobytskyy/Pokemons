@@ -6,5 +6,9 @@
   
 */
 
+//MARK: - PokemonsViewController
 "pokemonsView.title" = "Pokemons";
 "pokemonsView.searchBar.placeholder" = "Search...";
+
+//MARK: - PokemonDetailsViewController
+"pokemonDetailsView.title" = " info";

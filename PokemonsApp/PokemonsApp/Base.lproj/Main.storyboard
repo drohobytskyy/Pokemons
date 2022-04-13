@@ -74,10 +74,30 @@
                     <view key="view" contentMode="scaleToFill" id="OJL-8u-rPH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G2A-L5-xM1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <tableView key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Jzs-lv-MQl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </tableView>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4oG-mr-FZc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G2A-L5-xM1" firstAttribute="top" secondItem="4oG-mr-FZc" secondAttribute="top" id="ckf-FW-7Y4"/>
+                            <constraint firstItem="4oG-mr-FZc" firstAttribute="trailing" secondItem="G2A-L5-xM1" secondAttribute="trailing" id="fsE-4d-ASg"/>
+                            <constraint firstItem="4oG-mr-FZc" firstAttribute="bottom" secondItem="G2A-L5-xM1" secondAttribute="bottom" id="uSz-J8-bvY"/>
+                            <constraint firstItem="G2A-L5-xM1" firstAttribute="leading" secondItem="4oG-mr-FZc" secondAttribute="leading" id="yAS-cF-xO2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CdF-BW-Kpe"/>
+                    <connections>
+                        <outlet property="tableView" destination="G2A-L5-xM1" id="uOn-Nk-fd2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRT-RZ-1Bt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,7 @@ import UIKit
 class PokemonsViewController: UIViewController {
     
     //MARK: - Outlets
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: - Instance vars
@@ -26,6 +27,8 @@ class PokemonsViewController: UIViewController {
     
     //MARK: - Private methods
     private func setupUI() {
+        self.title = NSLocalizedString("pokemonsView.title", comment: "")
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.viewModel = PokemonViewModel()
         self.configureCollectionView()
         self.createActivityIndicator()
@@ -57,7 +60,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as! PokemonCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PokemonCollectionViewCell.self), for: indexPath) as! PokemonCollectionViewCell
         cell.configureCell(name: self.pokemons[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
         return cell
     }
@@ -69,6 +72,12 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
         
         if indexPath.row + 1 == self.pokemons.count {
             self.fetchPkemons()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: PokemonDetailsViewController.self)) as? PokemonDetailsViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

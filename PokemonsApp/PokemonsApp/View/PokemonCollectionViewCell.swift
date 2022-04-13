@@ -7,15 +7,12 @@
 
 import UIKit
 
-class PokemonCollectionViewCell: UICollectionViewCell {
-    static let identifier = "PokemonCollectionViewCell"
-    
+class PokemonCollectionViewCell: UICollectionViewCell {    
     //MARK: - Instace vars
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        //imageView.backgroundColor = .black
         return imageView
     }()
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I7K-FH-SAv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b9j-Mr-Ny0">
-                                <rect key="frame" x="0.0" y="194" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Sb-35-Ors">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,19 +37,10 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzV-Pj-BUV">
-                                <rect key="frame" x="15" y="64" width="384" height="50"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="OWw-NQ-vCE">
+                                <rect key="frame" x="15" y="88" width="384" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="v6S-jb-1gA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="OWw-NQ-vCE">
-                                <rect key="frame" x="15" y="124" width="384" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="WcQ-MU-TYZ"/>
+                                    <constraint firstAttribute="height" constant="44" id="WcQ-MU-TYZ"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -57,25 +48,76 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WzV-Pj-BUV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="AVP-Yc-Hkt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b9j-Mr-Ny0" secondAttribute="bottom" id="CB7-5v-6Ce"/>
                             <constraint firstItem="OWw-NQ-vCE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="JfG-Uy-GzU"/>
-                            <constraint firstItem="WzV-Pj-BUV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Joc-eB-o4f"/>
                             <constraint firstAttribute="trailing" secondItem="OWw-NQ-vCE" secondAttribute="trailing" constant="15" id="SQf-h8-OTL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WzV-Pj-BUV" secondAttribute="trailing" constant="15" id="XRc-L2-BTN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b9j-Mr-Ny0" secondAttribute="trailing" id="d9a-Yf-GJO"/>
-                            <constraint firstItem="b9j-Mr-Ny0" firstAttribute="top" secondItem="OWw-NQ-vCE" secondAttribute="bottom" constant="20" id="gyb-b2-2Oe"/>
+                            <constraint firstItem="b9j-Mr-Ny0" firstAttribute="top" secondItem="OWw-NQ-vCE" secondAttribute="bottom" id="gyb-b2-2Oe"/>
                             <constraint firstItem="b9j-Mr-Ny0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="j6h-hY-gn3"/>
-                            <constraint firstItem="OWw-NQ-vCE" firstAttribute="top" secondItem="WzV-Pj-BUV" secondAttribute="bottom" constant="10" id="pzH-bq-ru1"/>
+                            <constraint firstItem="OWw-NQ-vCE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pIV-rN-8r0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JSw-FN-qmE"/>
                     <connections>
                         <outlet property="collectionView" destination="b9j-Mr-Ny0" id="04Q-w0-jgX"/>
+                        <outlet property="searchBar" destination="OWw-NQ-vCE" id="Uv5-Fq-LRi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="691" y="113"/>
+        </scene>
+        <!--Pokemon Details View Controller-->
+        <scene sceneID="Bt4-Zm-09b">
+            <objects>
+                <viewController storyboardIdentifier="PokemonDetailsViewController" id="wRo-t5-YPM" customClass="PokemonDetailsViewController" customModule="PokemonsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OJL-8u-rPH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4oG-mr-FZc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CdF-BW-Kpe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRT-RZ-1Bt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2159" y="113"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gjo-Zr-Nue">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I7K-FH-SAv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jgp-97-RuT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kuh-G4-CHG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mke-Zu-oCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="18.840579710144929" y="112.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DKN-bb-79E">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bae-Im-dCE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fNJ-Bv-Uci">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wRo-t5-YPM" kind="relationship" relationship="rootViewController" id="4ZP-VS-lk2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khA-c6-SFp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="113"/>
         </scene>
     </scenes>
     <resources>

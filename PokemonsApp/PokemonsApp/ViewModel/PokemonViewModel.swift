@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Protocols
 protocol PokemonViewModelProtocol {
     var pokemons: (([PokemonDetails]) -> ())? { get set }
     var offset: Int { get set }
@@ -16,6 +17,7 @@ protocol PokemonViewModelProtocol {
 }
 
 class PokemonViewModel: PokemonViewModelProtocol {
+    
     //MARK: - Instance vars
     var pokemons: (([PokemonDetails]) -> ())?
     var offset: Int = 0
@@ -61,6 +63,16 @@ class PokemonViewModel: PokemonViewModelProtocol {
                     self.pokemonDetailsList.append(pokemon)
                     completion(count == pokemons.count)
                 }
+            }
+        }
+    }
+    
+    static func serach(by text: String, pokemons: [PokemonDetails]) -> [PokemonDetails] {
+        pokemons.filter{ pokemon in
+            if text.isNumber, let id = Int(text) {
+                return pokemon.id == id
+            } else {
+                return pokemon.name.lowercased().contains(text.lowercased())
             }
         }
     }

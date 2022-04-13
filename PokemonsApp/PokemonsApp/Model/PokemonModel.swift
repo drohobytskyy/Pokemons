@@ -7,11 +7,13 @@
 
 import Foundation
 
+//MARK: - Pokemon data model
 struct Pokemon: Codable {
     let name: String
     let url: String
 }
 
+//MARK: - PokemonDetails data model
 struct PokemonDetails: Codable {
     let id: Int
     let name: String

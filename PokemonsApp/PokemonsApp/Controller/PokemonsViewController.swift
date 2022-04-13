@@ -16,6 +16,8 @@ class PokemonsViewController: UIViewController {
     //MARK: - Instance vars
     private var viewModel: PokemonViewModelProtocol!
     private var pokemons = [PokemonDetails]()
+    private var searcResults = [PokemonDetails]()
+    private var isSearching: Bool = false
     private var isFetching = false
     private var activityIndicator: UIActivityIndicatorView?
     
@@ -29,7 +31,9 @@ class PokemonsViewController: UIViewController {
     private func setupUI() {
         self.title = NSLocalizedString("pokemonsView.title", comment: "")
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.viewModel = PokemonViewModel()
+        self.configureSearchBar()
         self.configureCollectionView()
         self.createActivityIndicator()
         
@@ -56,17 +60,25 @@ class PokemonsViewController: UIViewController {
 //MARK: - Collection delegate & datasource
 extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isSearching {
+            return self.searcResults.count
+        }
         return self.pokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PokemonCollectionViewCell.self), for: indexPath) as! PokemonCollectionViewCell
-        cell.configureCell(name: self.pokemons[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
+        
+        if isSearching {
+            cell.configureCell(name: self.searcResults[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
+        } else {
+            cell.configureCell(name: self.pokemons[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if !self.viewModel.hasNextPage || self.isFetching {
+        if !self.viewModel.hasNextPage || self.isFetching || self.isSearching {
             return
         }
         
@@ -79,6 +91,28 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
         if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: PokemonDetailsViewController.self)) as? PokemonDetailsViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+}
+
+extension PokemonsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.isSearching = true
+        
+        if searchText.isEmpty {
+            self.searcResults = self.pokemons
+        } else {
+            self.searcResults = PokemonViewModel.serach(by: searchText, pokemons: self.pokemons)
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        self.searchBar.text = ""
+        self.isSearching = false
+        self.searcResults = []
+        self.collectionView.reloadData()
     }
 }
 
@@ -120,5 +154,12 @@ extension PokemonsViewController {
         self.collectionView.frame = self.view.bounds
         
         self.view.addSubview(collectionView)
+    }
+    
+    func configureSearchBar() {
+        self.searchBar.delegate = self
+        self.searchBar.searchBarStyle = .minimal
+        self.searchBar.showsCancelButton = true
+        searchBar.placeholder = NSLocalizedString("pokemonsView.searchBar.placeholder", comment: "")
     }
 }

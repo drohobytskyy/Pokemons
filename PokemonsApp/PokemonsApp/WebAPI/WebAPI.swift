@@ -9,16 +9,21 @@ import Foundation
 import UIKit
 
 class WebAPI {
+    
+    //MARK: - Singleton instance
     static let shared: WebAPI = WebAPI()
     
+    //MARK: - Response data model
     struct Response: Codable {
         var count: Int
         var next: String?
         var results: [Pokemon]
     }
     
+    //MARK: - Instance vars
     private let limit: Int = 200
     
+    //MARK: - Public methods
     func fetchPokemons(with offset: Int, completion: @escaping (Result<Response,Error>) -> Void) {
         let url = "https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)"
         

@@ -2,7 +2,7 @@
 //  PokemonDetailsViewController.swift
 //  PokemonsApp
 //
-//  Created by itsector on 13/04/2022.
+//  Created by @drohobytskyy on 13/04/2022.
 //
 
 import UIKit

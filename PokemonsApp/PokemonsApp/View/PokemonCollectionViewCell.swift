@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PokemonCollectionViewCell: UICollectionViewCell {    
+class PokemonCollectionViewCell: UICollectionViewCell {
+    
     //MARK: - Instace vars
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()

@@ -14,7 +14,7 @@ class PokemonsViewController: UIViewController {
     
     //MARK: - Instance vars
     private var viewModel: PokemonViewModelProtocol!
-    private var pokemons = [Pokemon]()
+    private var pokemons = [PokemonDetails]()
     private var isFetching = false
     private var activityIndicator: UIActivityIndicatorView?
     
@@ -58,7 +58,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as! PokemonCollectionViewCell
-        cell.configureCell(name: self.pokemons[indexPath.row].name, image: UIImage(systemName: ""))
+        cell.configureCell(name: self.pokemons[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
         return cell
     }
     
@@ -98,9 +98,9 @@ extension PokemonsViewController {
     func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.itemSize = CGSize(width: (self.view.frame.size.width - 50), height: (self.view.frame.size.width - 50))
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
+        layout.itemSize = CGSize(width: (self.view.frame.size.width / 1.5), height: (self.view.frame.size.width / 1.5))
         
         self.collectionView.collectionViewLayout = layout
         

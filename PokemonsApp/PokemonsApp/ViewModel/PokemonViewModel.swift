@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PokemonViewModelProtocol {
-    var pokemons: (([Pokemon]) -> ())? { get set }
+    var pokemons: (([PokemonDetails]) -> ())? { get set }
     var offset: Int { get set }
     var hasNextPage: Bool { get }
     
@@ -16,24 +16,51 @@ protocol PokemonViewModelProtocol {
 }
 
 class PokemonViewModel: PokemonViewModelProtocol {
-    var pokemons: (([Pokemon]) -> ())?
+    //MARK: - Instance vars
+    var pokemons: (([PokemonDetails]) -> ())?
     var offset: Int = 0
     var hasNextPage: Bool = true
     
+    private var pokemonDetailsList: [PokemonDetails]
+    
+    //MARK: - Init
     init() {
         self.pokemons?([])
+        self.pokemonDetailsList = []
     }
     
+    //MARK: - Public methods
     func fetchPokemons() {
+        self.pokemonDetailsList = []
         WebAPI.shared.fetchPokemons(with: self.offset) { [weak self] results in
             switch results {
             case .failure(_):
                 self?.pokemons?([])
-                break
             case .success(let response):
-                self?.hasNextPage = !(response.next ?? "").isEmpty
-                self?.pokemons?(response.results)
-                break
+                self?.fetchPokemonsDetails(pokemons: response.results, completion: { finished in
+                    if finished {
+                        self?.hasNextPage = !(response.next ?? "").isEmpty
+                        self?.pokemons?(self?.pokemonDetailsList ?? [])
+                    }
+                })
+            }
+        }
+    }
+    
+    func fetchPokemonsDetails(pokemons: [Pokemon], completion: @escaping (Bool) -> Void) {
+        var count = 0
+        pokemons.forEach { pokemon in
+            let url = URL(string: pokemon.url)
+            let id = url?.pathComponents.last ?? "0"
+            WebAPI.shared.fetchPokemonDetail(pokemonId: id) { (result) in
+                switch result {
+                case .failure:
+                    count += 1
+                case .success(let pokemon):
+                    count += 1
+                    self.pokemonDetailsList.append(pokemon)
+                    completion(count == pokemons.count)
+                }
             }
         }
     }

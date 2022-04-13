@@ -15,14 +15,16 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .blue
+        //imageView.backgroundColor = .black
         return imageView
     }()
     
     private let pokemonNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.backgroundColor = .yellow
+        label.backgroundColor = .black
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
@@ -32,9 +34,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.pokemonImageView)
         self.contentView.addSubview(self.pokemonNameLabel)
-    
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.borderColor = UIColor.black.cgColor
         self.contentView.clipsToBounds = true
-        self.contentView.backgroundColor = .gray
     }
     
     required init?(coder: NSCoder) {
@@ -58,10 +60,17 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Private methods
-    public func configureCell(name: String, image: UIImage?) {
+    public func configureCell(name: String, imageURL: String) {
         self.pokemonNameLabel.text = name
-        if let image = image {
-            self.pokemonImageView.image = image
+        WebAPI.shared.getPokemonImage(from: imageURL) { (result) in
+            switch result {
+            case .failure:
+                break
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.pokemonImageView.image = image
+                }
+            }
         }
     }
 }

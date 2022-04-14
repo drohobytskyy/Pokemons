@@ -11,4 +11,12 @@
 "pokemonsView.searchBar.placeholder" = "Search...";
 
 //MARK: - PokemonDetailsViewController
-"pokemonDetailsView.title" = " info";
+"pokemonDetailsView.title" = "Pokemon's info";
+
+//MARK: - PokemonDetailsTableViewCell
+"pokemonDetails.id" = "Id: ";
+"pokemonDetails.name" = "Name: ";
+"pokemonDetails.weight" = "Weight: ";
+"pokemonDetails.heigt" = "Height: ";
+"pokemonDetails.baseExperience" = "Base experience: ";
+"pokemonDetails.abilities" = "Abilities: ";

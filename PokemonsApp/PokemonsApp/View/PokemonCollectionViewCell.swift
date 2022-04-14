@@ -19,10 +19,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     private let pokemonNameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        label.backgroundColor = .black
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.pokemonCollectionCellNameLabelStyle()
         return label
     }()
     
@@ -33,7 +30,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(self.pokemonImageView)
         self.contentView.addSubview(self.pokemonNameLabel)
         self.contentView.layer.borderWidth = 1
-        self.contentView.layer.borderColor = UIColor.black.cgColor
+        self.contentView.layer.borderColor = UIColor.primaryColor().cgColor
         self.contentView.clipsToBounds = true
     }
     

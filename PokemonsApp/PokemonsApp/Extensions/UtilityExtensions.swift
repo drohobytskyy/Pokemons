@@ -17,7 +17,40 @@ extension String  {
 extension UINavigationController {
     func customAppStyle() {
         self.navigationBar.prefersLargeTitles = true
-        self.navigationBar.tintColor = .black
+        self.navigationBar.tintColor = .primaryColor()
+    }
+}
+
+extension UIColor {
+    static func primaryColor() -> UIColor {
+        return UIColor.black
+    }
+    
+    static func darkTextColor() -> UIColor {
+        return UIColor.black
+    }
+    
+    static func lightTextColor() -> UIColor {
+        return UIColor.white
+    }
+}
+
+extension UILabel {
+    func defaultFontStyle() {
+        self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        self.textColor = .darkTextColor()
+    }
+    
+    func pokemonDetailsCellStyle() {
+        self.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        self.textColor = .darkTextColor()
+    }
+    
+    func pokemonCollectionCellNameLabelStyle() {
+        self.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        self.textColor = .lightTextColor()
+        self.backgroundColor = .primaryColor()
+        self.textAlignment = .center
     }
 }
 

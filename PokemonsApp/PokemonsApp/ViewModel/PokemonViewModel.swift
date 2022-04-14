@@ -52,7 +52,7 @@ class PokemonViewModel: PokemonViewModelProtocol {
     func fetchPokemonsDetails(pokemons: [Pokemon], completion: @escaping (Bool) -> Void) {
         var count = 0
         pokemons.forEach { pokemon in
-            let url = URL(string: pokemon.url)
+            let url = URL(string: pokemon.url ?? "")
             let id = url?.pathComponents.last ?? "0"
             WebAPI.shared.fetchPokemonDetail(pokemonId: id) { (result) in
                 switch result {
@@ -72,8 +72,17 @@ class PokemonViewModel: PokemonViewModelProtocol {
             if text.isNumber, let id = Int(text) {
                 return pokemon.id == id
             } else {
-                return pokemon.name.lowercased().contains(text.lowercased())
+                return (pokemon.name ?? "").lowercased().contains(text.lowercased())
             }
         }
+    }
+    
+    static func getAbilities(pokemon: PokemonDetails) -> [String] {
+        var results = [String]()
+        if let abilities = pokemon.abilities {
+            results.append(contentsOf: abilities.map{ String($0.ability?.name ?? "") })
+        }
+        
+        return results
     }
 }

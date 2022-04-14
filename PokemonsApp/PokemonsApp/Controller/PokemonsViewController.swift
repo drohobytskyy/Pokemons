@@ -11,6 +11,7 @@ class PokemonsViewController: UIViewController {
     
     //MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: - Instance vars
@@ -70,9 +71,9 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PokemonCollectionViewCell.self), for: indexPath) as! PokemonCollectionViewCell
         
         if isSearching {
-            cell.configureCell(name: self.searcResults[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
+            cell.configureCell(name: self.searcResults[indexPath.row].name ?? "", imageURL: self.pokemons[indexPath.row].sprites?.front_default ?? "")
         } else {
-            cell.configureCell(name: self.pokemons[indexPath.row].name, imageURL: self.pokemons[indexPath.row].sprites.front_default ?? "")
+            cell.configureCell(name: self.pokemons[indexPath.row].name ?? "", imageURL: self.pokemons[indexPath.row].sprites?.front_default ?? "")
         }
         return cell
     }
@@ -95,6 +96,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+//MARK: - UISearchBarDelegate delegate
 extension PokemonsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.isSearching = true

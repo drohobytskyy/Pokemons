@@ -27,11 +27,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.contentView.addSubview(self.pokemonImageView)
-        self.contentView.addSubview(self.pokemonNameLabel)
-        self.contentView.layer.borderWidth = 1
-        self.contentView.layer.borderColor = UIColor.primaryColor().cgColor
-        self.contentView.clipsToBounds = true
+        self.setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -42,10 +38,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.contentView.layer.cornerRadius = self.contentView.frame.width / 2
-        
-        self.pokemonImageView.frame = CGRect(x: 0, y: 0, width: self.contentView.frame.width, height: self.contentView.frame.height - 50)
-        self.pokemonNameLabel.frame = CGRect(x: 0, y: self.pokemonImageView.frame.maxY, width: self.contentView.frame.width, height: 50)
+        self.updateFrames()
     }
     
     override func prepareForReuse() {
@@ -55,6 +48,21 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Private methods
+    private func setupUI() {
+        self.contentView.addSubview(self.pokemonImageView)
+        self.contentView.addSubview(self.pokemonNameLabel)
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.borderColor = UIColor.primaryColor().cgColor
+        self.contentView.clipsToBounds = true
+    }
+    
+    private func updateFrames() {
+        self.contentView.layer.cornerRadius = self.contentView.frame.width / 2
+        self.pokemonImageView.frame = CGRect(x: 0, y: 0, width: self.contentView.frame.width, height: self.contentView.frame.height - 50)
+        self.pokemonNameLabel.frame = CGRect(x: 0, y: self.pokemonImageView.frame.maxY, width: self.contentView.frame.width, height: 50)
+    }
+    
+    //MARK: - Public methods
     public func configureCell(name: String, imageURL: String) {
         self.pokemonNameLabel.text = name
         WebAPI.shared.getPokemonImage(from: imageURL) { (result) in

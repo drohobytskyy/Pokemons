@@ -8,19 +8,14 @@
 import Foundation
 import UIKit
 
+//MARK: - String
 extension String  {
     var isNumber: Bool {
         return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 }
 
-extension UINavigationController {
-    func customAppStyle() {
-        self.navigationBar.prefersLargeTitles = true
-        self.navigationBar.tintColor = .primaryColor()
-    }
-}
-
+//MARK: - UIColor
 extension UIColor {
     static func primaryColor() -> UIColor {
         return UIColor.black
@@ -35,6 +30,7 @@ extension UIColor {
     }
 }
 
+//MARK: - UILabel
 extension UILabel {
     func defaultFontStyle() {
         self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -51,6 +47,25 @@ extension UILabel {
         self.textColor = .lightTextColor()
         self.backgroundColor = .primaryColor()
         self.textAlignment = .center
+    }
+}
+
+//MARK: - UINavigationController
+extension UINavigationController {
+    func customAppStyle() {
+        self.navigationBar.prefersLargeTitles = true
+        self.navigationBar.tintColor = .primaryColor()
+    }
+}
+
+//MARK: - UIViewController
+extension UIViewController: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 {
+            self.navigationController?.navigationBar.prefersLargeTitles = false
+        } else {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
 }
 

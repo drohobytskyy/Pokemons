@@ -71,7 +71,7 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PokemonCollectionViewCell.self), for: indexPath) as! PokemonCollectionViewCell
         
         if isSearching {
-            cell.configureCell(name: self.searcResults[indexPath.row].name ?? "", imageURL: self.pokemons[indexPath.row].sprites?.front_default ?? "")
+            cell.configureCell(name: self.searcResults[indexPath.row].name ?? "", imageURL: self.searcResults[indexPath.row].sprites?.front_default ?? "")
         } else {
             cell.configureCell(name: self.pokemons[indexPath.row].name ?? "", imageURL: self.pokemons[indexPath.row].sprites?.front_default ?? "")
         }
@@ -90,7 +90,12 @@ extension PokemonsViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: String(describing: PokemonDetailsViewController.self)) as? PokemonDetailsViewController {
-            vc.pokemonDetails = self.pokemons[indexPath.row]
+            if isSearching {
+                vc.pokemonDetails = self.searcResults[indexPath.row]
+            } else {
+                vc.pokemonDetails = self.pokemons[indexPath.row]
+            }
+            
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -162,6 +167,8 @@ extension PokemonsViewController {
         self.searchBar.delegate = self
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.showsCancelButton = true
-        searchBar.placeholder = NSLocalizedString("pokemonsView.searchBar.placeholder", comment: "")
+        self.searchBar.placeholder = NSLocalizedString("pokemonsView.searchBar.placeholder", comment: "")
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.primaryColor()
+        self.searchBar.tintColor = UIColor.primaryColor()
     }
 }

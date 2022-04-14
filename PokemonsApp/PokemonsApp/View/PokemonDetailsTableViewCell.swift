@@ -27,6 +27,7 @@ class PokemonDetailsTableViewCell: UITableViewCell {
         self.heightLabel.pokemonDetailsCellStyle()
         self.baseExperienceLabel.pokemonDetailsCellStyle()
         self.abilitiesLabel.pokemonDetailsCellStyle()
+        self.abilitiesLabel.numberOfLines = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

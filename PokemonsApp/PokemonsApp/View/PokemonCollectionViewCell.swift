@@ -14,6 +14,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .primaryColor()
         return imageView
     }()
     

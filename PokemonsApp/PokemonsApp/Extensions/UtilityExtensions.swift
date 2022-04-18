@@ -18,15 +18,31 @@ extension String  {
 //MARK: - UIColor
 extension UIColor {
     static func primaryColor() -> UIColor {
-        return UIColor.black
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return UIColor.white
+                } else {
+                    return UIColor.black
+                }
+            }
+        } else {
+            return UIColor.black
+        }
     }
     
-    static func darkTextColor() -> UIColor {
-        return UIColor.black
-    }
-    
-    static func lightTextColor() -> UIColor {
-        return UIColor.white
+    static func textColor() -> UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return UIColor.black
+                } else {
+                    return UIColor.white
+                }
+            }
+        } else {
+            return UIColor.white
+        }
     }
 }
 
@@ -34,17 +50,17 @@ extension UIColor {
 extension UILabel {
     func defaultFontStyle() {
         self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        self.textColor = .darkTextColor()
+        self.textColor = .primaryColor()
     }
     
     func pokemonDetailsCellStyle() {
         self.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        self.textColor = .darkTextColor()
+        self.textColor = .primaryColor()
     }
     
     func pokemonCollectionCellNameLabelStyle() {
         self.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        self.textColor = .lightTextColor()
+        self.textColor = .textColor()
         self.backgroundColor = .primaryColor()
         self.textAlignment = .center
     }

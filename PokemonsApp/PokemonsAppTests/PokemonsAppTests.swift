@@ -34,7 +34,7 @@ class PokemonsAppTests: XCTestCase {
         waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    func testSerach() {
+    func testSearch() {
         let expect = expectation(description: "fetch pokemons and search")
         
         self.pokemonsViewModel.fetchPokemons()

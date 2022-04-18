@@ -69,6 +69,7 @@
 		2DDA49FF2806F06800AB1FF1 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		2DDA4A002806F06800AB1FF1 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2DDA4A01280705ED00AB1FF1 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		2DDF6CE7280D9C8000956634 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 		2DD616252805748D00CB9CC3 = {
 			isa = PBXGroup;
 			children = (
+				2DDF6CE7280D9C8000956634 /* README.md */,
 				2DD616302805748D00CB9CC3 /* PokemonsApp */,
 				2DD616472805748F00CB9CC3 /* PokemonsAppTests */,
 				2DD616512805748F00CB9CC3 /* PokemonsAppUITests */,

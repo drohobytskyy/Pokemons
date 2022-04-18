@@ -19,7 +19,7 @@ class PokemonsViewController: UIViewController {
     private var pokemons = [PokemonDetails]()
     private var searcResults = [PokemonDetails]()
     private var isSearching: Bool = false
-    private var isFetching = false
+    private var isFetching: Bool = false
     private var activityIndicator: UIActivityIndicatorView?
     
     //MARK: - Life cycle

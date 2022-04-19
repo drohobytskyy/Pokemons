@@ -14,8 +14,8 @@ class PokemonDetailsViewController: UIViewController {
     
     //MARK: - Instance vars
     var pokemonDetails: PokemonDetails?
-    private let headerViewHeight: CGFloat = 150.0
-    private let estimateRowHeight: CGFloat = 100.0
+    private var headerViewHeight: CGFloat = 150.0
+    private let estimateRowHeight: CGFloat = 0
 
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -26,8 +26,17 @@ class PokemonDetailsViewController: UIViewController {
     
     //MARK: - Private methods
     private func setupUI() {
-        self.title = NSLocalizedString("pokemonDetailsView.title", comment: "")        
+        self.title = NSLocalizedString("pokemonDetailsView.title", comment: "")
         self.configureTableView()
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            break
+        case .pad:
+            self.headerViewHeight = self.headerViewHeight * 2
+        default:
+            break
+        }
     }
 }
 

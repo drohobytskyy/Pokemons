@@ -148,10 +148,23 @@ extension PokemonsViewController {
     
     func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
+        let padding: CGFloat = 20
+        var scaleFactor: CGFloat = 0.6
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 20
-        layout.itemSize = CGSize(width: (self.view.frame.size.width / 1.5), height: (self.view.frame.size.width / 1.5))
+        layout.minimumLineSpacing = padding
+        layout.minimumInteritemSpacing = padding
+        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            scaleFactor = 0.6
+        case .pad:
+            scaleFactor = 0.4
+        default:
+            break
+        }
+        
+        layout.itemSize = CGSize(width: (self.view.frame.size.width * scaleFactor), height: (self.view.frame.size.width * scaleFactor))
         
         self.collectionView.collectionViewLayout = layout
         

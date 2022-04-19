@@ -130,6 +130,7 @@ extension PokemonsViewController {
         self.activityIndicator = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.large)
         self.activityIndicator?.alpha = 0
         self.activityIndicator?.center = self.view.center
+        self.activityIndicator?.color = .tintColor
         guard let activityIndicator = activityIndicator else { return }
         self.view.addSubview(activityIndicator)
     }

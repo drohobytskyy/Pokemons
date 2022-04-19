@@ -24,6 +24,11 @@ class PokemonDetailsViewController: UIViewController {
         self.setupUI()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.tableView.reloadData()
+    }
+    
     //MARK: - Private methods
     private func setupUI() {
         self.title = NSLocalizedString("pokemonDetailsView.title", comment: "")

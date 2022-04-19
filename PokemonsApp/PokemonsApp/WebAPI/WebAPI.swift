@@ -5,6 +5,12 @@
 //  Created by @drohobytskyy on 12/04/2022.
 //
 
+// Class responsible for fetching pokemons data from external API
+// Singleton design pattern
+// Instance methods:
+///  1.  fetchPokemons(with offset: Int, completion: @escaping (Result<Response,Error>) -> Void)
+///  2.  fetchPokemonDetail(pokemonId: String, completion: @escaping (Result<PokemonDetails,Error>) -> Void)
+
 import Foundation
 import UIKit
 
@@ -73,29 +79,6 @@ class WebAPI {
             }
             
             completion(.success(decodedResult))
-        }.resume()
-    }
-
-    func getPokemonImage(from urlString: String, completion: @escaping (Result<UIImage,Error>) -> Void) {
-        let pokemonURL = URL(string: urlString)
-        URLSession.shared.dataTask(with: pokemonURL!) { (data, response, error) in
-            if error != nil {
-                debugPrint(error!)
-                completion(.failure(error!))
-            } else {
-                if (response as? HTTPURLResponse) != nil {
-                    if let imageData = data {
-                        let image = UIImage(data: imageData)
-                        completion(.success(image!))
-                    } else {
-                        let error = NSError(domain: "", code: -1, userInfo: nil)
-                        completion(.failure(error))
-                    }
-                } else {
-                    let error = NSError(domain: "", code: -1, userInfo: nil)
-                    completion(.failure(error))
-                }
-            }
         }.resume()
     }
 }

@@ -66,15 +66,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     //MARK: - Public methods
     public func configureCell(name: String, imageURL: String) {
         self.pokemonNameLabel.text = name
-        WebAPI.shared.getPokemonImage(from: imageURL) { (result) in
-            switch result {
-            case .failure:
-                break
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self.pokemonImageView.image = image
-                }
-            }
+        
+        if let url = URL(string: imageURL) {
+            self.pokemonImageView.loadImage(with: url)
         }
     }
 }

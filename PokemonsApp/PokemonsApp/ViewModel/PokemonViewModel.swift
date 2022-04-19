@@ -5,6 +5,15 @@
 //  Created by @drohobytskyy on 12/04/2022.
 //
 
+// Class responsible for binding data to PokemonsViewController
+// binding var - pokemons: (([PokemonDetails]) -> ())? { get set }
+// Instance methods:
+/// fetchPokemons()
+/// fetchPokemonsDetails(pokemons: [Pokemon], completion: @escaping (Bool) -> Void)
+// Class methods
+/// serach(by text: String, pokemons: [PokemonDetails]) -> [PokemonDetails]
+/// getAbilities(pokemon: PokemonDetails) -> [String]
+
 import Foundation
 
 //MARK: - Protocols

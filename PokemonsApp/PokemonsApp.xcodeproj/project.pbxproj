@@ -122,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				2DD616612805767200CB9CC3 /* WebAPI */,
-				2DD616622805768A00CB9CC3 /* Utils */,
 				2DD616632805769800CB9CC3 /* Extensions */,
 				2DD61665280576BC00CB9CC3 /* Model */,
 				2DD61666280576C900CB9CC3 /* View */,
@@ -162,13 +161,6 @@
 				2DD6166828057FF200CB9CC3 /* WebAPI.swift */,
 			);
 			path = WebAPI;
-			sourceTree = "<group>";
-		};
-		2DD616622805768A00CB9CC3 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		2DD616632805769800CB9CC3 /* Extensions */ = {

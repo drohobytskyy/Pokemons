@@ -59,15 +59,8 @@ extension PokemonDetailsViewController: UITableViewDelegate, UITableViewDataSour
         pokemonImageView.contentMode = .scaleAspectFit
         pokemonImageView.clipsToBounds = true
         
-        WebAPI.shared.getPokemonImage(from: self.pokemonDetails?.sprites?.back_default ?? "") { (result) in
-            switch result {
-            case .failure:
-                break
-            case .success(let image):
-                DispatchQueue.main.async {
-                    pokemonImageView.image = image
-                }
-            }
+        if let url = URL(string: self.pokemonDetails?.sprites?.back_default ?? "") {
+            pokemonImageView.loadImage(with: url)
         }
         
         return pokemonImageView

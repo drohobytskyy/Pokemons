@@ -27,13 +27,14 @@ class WebAPI {
     }
     
     //MARK: - Instance vars
+    private let baseURL: String = "https://pokeapi.co/api/v2/"
     private let limit: Int = 200
     
     //MARK: - Public methods
     func fetchPokemons(with offset: Int, completion: @escaping (Result<Response,Error>) -> Void) {
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)"
+        let url = URL(string: self.baseURL + "pokemon?limit=\(limit)&offset=\(offset)")
         
-        URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard let data = data, error == nil else {
                 completion(.failure(error!))
                 return
@@ -56,9 +57,9 @@ class WebAPI {
     }
     
     func fetchPokemonDetail(pokemonId: String, completion: @escaping (Result<PokemonDetails,Error>) -> Void) {
-        let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId
+        let url = URL(string: self.baseURL + "pokemon/" + pokemonId)
         
-        URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
             guard let data = data, error == nil else {
                 debugPrint(error!)
@@ -67,6 +68,7 @@ class WebAPI {
             }
             
             var result: PokemonDetails?
+            
             do {
                 result = try JSONDecoder().decode(PokemonDetails.self, from: data)
             } catch {

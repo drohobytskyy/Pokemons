@@ -67,6 +67,7 @@ class PokemonViewModel: PokemonViewModelProtocol {
                 switch result {
                 case .failure:
                     count += 1
+                    completion(count == pokemons.count)
                 case .success(let pokemon):
                     count += 1
                     self.pokemonDetailsList.append(pokemon)

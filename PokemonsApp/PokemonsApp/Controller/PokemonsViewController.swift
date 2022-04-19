@@ -44,6 +44,10 @@ class PokemonsViewController: UIViewController {
                 self?.isFetching = false
                 self?.showActivity(show: false)
                 self?.collectionView.reloadData()
+                
+                if self?.pokemons.count == 0 {
+                    self?.showNoResultsAlert()
+                }
             }
         }
         
@@ -184,5 +188,11 @@ extension PokemonsViewController {
         self.searchBar.placeholder = NSLocalizedString("pokemonsView.searchBar.placeholder", comment: "")
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.primaryColor()
         self.searchBar.tintColor = UIColor.primaryColor()
+    }
+    
+    func showNoResultsAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("no.results.alert.title", comment: ""), message: NSLocalizedString("no.results.alert.message", comment: ""), preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("no.results.alert.action", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

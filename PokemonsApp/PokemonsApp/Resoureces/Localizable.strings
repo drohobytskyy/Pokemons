@@ -12,6 +12,9 @@
 
 //MARK: - PokemonDetailsViewController
 "pokemonDetailsView.title" = "Pokemon's info";
+"no.results.alert.title" = "Oops";
+"no.results.alert.message" = "No pokemons were found :(";
+"no.results.alert.action" = "Ok";
 
 //MARK: - PokemonDetailsTableViewCell
 "pokemonDetails.id" = "Id: ";

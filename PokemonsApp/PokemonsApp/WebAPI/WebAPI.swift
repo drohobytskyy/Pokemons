@@ -19,11 +19,17 @@ class WebAPI {
     //MARK: - Singleton instance
     static let shared: WebAPI = WebAPI()
     
-    //MARK: - Response data model
+    //MARK: - API esponse
     struct Response: Codable {
         var count: Int
         var next: String?
         var results: [Pokemon]
+    }
+    
+    //MARK: - Aditional errors
+    enum APIError: Error {
+        case invalidURL
+        case fetchError
     }
     
     //MARK: - Instance vars
@@ -32,11 +38,19 @@ class WebAPI {
     
     //MARK: - Public methods
     func fetchPokemons(with offset: Int, completion: @escaping (Result<Response,Error>) -> Void) {
-        let url = URL(string: self.baseURL + "pokemon?limit=\(limit)&offset=\(offset)")
+        guard let url = URL(string: self.baseURL + "pokemon?limit=\(limit)&offset=\(offset)") else {
+            completion(.failure(APIError.invalidURL))
+            return
+        }
         
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
-                completion(.failure(error!))
+                guard let error = error else {
+                    completion(.failure(APIError.fetchError))
+                    return
+                }
+
+                completion(.failure(error))
                 return
             }
             
@@ -57,13 +71,20 @@ class WebAPI {
     }
     
     func fetchPokemonDetail(pokemonId: String, completion: @escaping (Result<PokemonDetails,Error>) -> Void) {
-        let url = URL(string: self.baseURL + "pokemon/" + pokemonId)
+        guard let url = URL(string: self.baseURL + "pokemon/" + pokemonId) else {
+            completion(.failure(APIError.invalidURL))
+            return
+        }
         
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
-                debugPrint(error!)
-                completion(.failure(error!))
+                guard let error = error else {
+                    completion(.failure(APIError.fetchError))
+                    return
+                }
+                
+                debugPrint(error)
+                completion(.failure(error))
                 return
             }
             

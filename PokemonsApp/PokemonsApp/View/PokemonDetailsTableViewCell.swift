@@ -46,5 +46,4 @@ class PokemonDetailsTableViewCell: UITableViewCell {
         let ablities = PokemonViewModel.getAbilities(pokemon: pokemon).joined(separator: ", ")
         self.abilitiesLabel.text = NSLocalizedString("pokemonDetails.abilities", comment: "") + ablities
     }
-    
 }

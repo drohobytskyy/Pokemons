@@ -63,14 +63,14 @@ class PokemonViewModel: PokemonViewModelProtocol {
         pokemons.forEach { pokemon in
             let url = URL(string: pokemon.url ?? "")
             let id = url?.pathComponents.last ?? "0"
-            WebAPI.shared.fetchPokemonDetail(pokemonId: id) { (result) in
+            WebAPI.shared.fetchPokemonDetail(pokemonId: id) { [weak self] result in
                 switch result {
                 case .failure:
                     count += 1
                     completion(count == pokemons.count)
                 case .success(let pokemon):
                     count += 1
-                    self.pokemonDetailsList.append(pokemon)
+                    self?.pokemonDetailsList.append(pokemon)
                     completion(count == pokemons.count)
                 }
             }
